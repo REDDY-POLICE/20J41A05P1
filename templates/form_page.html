@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employee Performance</title>
+    <!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css"
+     rel="stylesheet" 
+     integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" 
+     crossorigin="anonymous">
+   
+    <style>
+        
+        input[type=number]::-webkit-inner-spin-button, 
+        input[type=number]::-webkit-outer-spin-button { 
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+        margin: 0; 
+        }
+        body{
+            background-image: url("/static/bg.jpeg");
+            background-repeat: no-repeat;
+            background-size: cover;
+           
+        }
+        .form_heading{
+            border: 4px solid whitesmoke;
+            border-radius: 8px;
+            box-shadow: 5px 5px 15px grey;
+            border-style:ridge;
+        }
+        .form_div{
+            border-radius:8px ;
+            font-size: 20px;
+        }
+
+        .proficiency{
+            border: 3px solid palevioletred;
+            border-radius: 7px;
+            border-style: inset;
+            background-color:white;
+        }
+
+        .alpha
+        {
+           opacity: 0.8;
+        }
+
+
+        
+    </style>
+</head>
+<body>
+    <div class="container  col-lg-3 mt-3 text-center">
+        <p class="bg-danger form_heading p-2 text-light " style="font-size: 15px;">Employee Performance Prediction</p>
+    </div>
+    <div class="container form_div col-lg-4 text-primary p-2 alpha card">
+        <form id="my_form" class="was-validated">
+
+            <!-- LATE DAYS -->
+            <div class="form-group row mt-3">
+                <label for="late_days" class="col-sm-3 labeling col-form-label">Late Days</label>
+                <div class="col-sm-9">
+                    <input type="text" 
+                    pattern="0[0-9]|[0-9]|[12][0-9]|30"
+                    class="form-control proficiency"
+                    id="late_days"  required>
+                    <!-- <div class="valid-feedback">Done.</div> -->
+                    <div class="invalid-feedback">Enter integer values from 0 to 30</div>
+                </div>
+            </div>
+
+            <div class="form-group row mt-3">
+                <label for="engage" class="col-sm-3 labeling col-form-label">Engagement</label>
+                <div class="col-sm-9">
+                    <input type="text" pattern="(10|\d)(\.\d{1,2})?" class="form-control proficiency"
+                    id="engage" required>
+                    <!-- <div class="valid-feedback">Done.</div> -->
+                    <div class="invalid-feedback">Enter decimal numbers from 0 to 5</div>
+                </div>
+            </div>
+
+            <div class="form-group row mt-3">
+              <label for="salary" class="col-sm-3 labeling col-form-label">Salary</label>
+              <div class="col-sm-9">
+                    <input type="number" min="1" class="form-control proficiency"
+                    id="salary" required>
+                    <!-- <div class="valid-feedback">Done.</div> -->
+                    <div class="invalid-feedback">Enter a positive integer. </div>
+              </div>
+            </div>
+
+            <div class="form-group row mt-3">
+                <label for="date_of_hire" class="col-sm-3 labeling col-form-label">Date of Hire</label>
+                <div class="col-sm-9">
+                    <input class="form-control proficiency"
+                    type="date" id="date_of_hire" name="date_of_hire" required>
+                </div>
+                
+            </div>
+
+            <div class="form-group row mt-3">
+                <label for="absents" class="col-sm-3 labeling col-form-label">Absents</label>
+                <div class="col-sm-9">
+                  <input type="number" min="1" class="form-control proficiency"
+                   id="absents" required>
+                   <!-- <div class="valid-feedback">Done.</div> -->
+                   <div class="invalid-feedback">Enter a positive integer. </div>
+                </div>
+            </div>
+
+            <div class="form-group row mt-3">
+                <label for="date_of_birth" class="col-sm-3 labeling col-form-label">Date of Birth</label>
+                <div class="col-sm-9">
+                    <input class="form-control proficiency" type="date" id="date_of_birth" name="date_of_birth" required>
+                </div>
+            </div>
+
+            <div class="form-group row mt-3">
+                <label for="satisfaction" class="col-sm-3 labeling col-form-label">Satisfaction</label>
+                <div class="col-sm-9">
+                    <input type="text" pattern="([0-4]\d*(\.\d+)?)|5" class="form-control proficiency"
+                     id="satisfaction" required>
+                    <!-- <div class="valid-feedback">Done.</div> -->
+                    <div class="invalid-feedback">Enter decimal numbers from 0 to 5. </div>
+                </div>
+            </div>
+
+            <hr class="mb-2">
+            <div class="form-group row text-center">
+              <div class="col-sm-10">
+                <button type="submit" class="btn btn-primary">Submit</button>
+              </div>
+            </div>
+          </form>
+    </div>
+ <!-- JavaScript Bundle with Popper -->
+ <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"
+ integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" 
+ crossorigin="anonymous"></script> 
+ <script>
+    const my_form = document.getElementById("my_form")
+    my_form.addEventListener("submit",handlesubmit)
+
+    function handlesubmit(e){
+        
+        const late_days = document.getElementById("late_days").value
+        const engagement = document.getElementById("engage").value
+        const salary = document.getElementById("salary").value
+        const date_of_hire = document.getElementById("date_of_hire").value
+        const absents = document.getElementById("absents").value
+        const date_of_birth = document.getElementById("date_of_birth").value
+        const satisfaction = document.getElementById("satisfaction").value
+        var form_data= {"late_days":late_days,
+                        "engagement":engagement,
+                        "salary":salary,
+                        "date_of_hire":date_of_hire,
+                        "absents":absents,
+                        "date_of_birth":date_of_birth,
+                        "satisfaction":satisfaction}
+        var asjson = JSON.stringify(form_data)
+        fetch("/",{
+            method : "post",
+            body : asjson
+        }).then(convert_data_to_js_object).then(print_the_data)
+        e.preventDefault()
+        function convert_data_to_js_object(data){
+           return data.json()
+        }
+        function print_the_data(data){
+           console.log(data)
+            if (data.msg=="success") {
+                
+                window.location.pathname="/data_page/"
+           }         
+        }
+    }
+</script>
+
+</body>
+</html>
